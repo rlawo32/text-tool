@@ -178,6 +178,7 @@ const View = () => {
     const [textOrder, setTextOrder] = useState<string>("");
     const [textInterval, setTextInterval] = useState<number>(0);
     const [textSpecific, setTextSpecific] = useState<string>("");
+    const [textTooltip, setTextTooltip] = useState<boolean>(false);
 
     const textConversion = () => {
         const conversionOrigin:string = textOption1 === 'G' ? textInput : textInput.replace(/ /g,"");
