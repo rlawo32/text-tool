@@ -190,7 +190,7 @@ const View = () => {
         const arr:string[] = conversionOrigin.split('');
 
         if(textOption1 === 'O') {
-            for(let word of arr) {
+            for(const word of arr) {
                 if(textOption2 === 'F') {
                     conversionResult += conversionOrder + word;
                 } else if(textOption2 === 'B') {
@@ -219,7 +219,7 @@ const View = () => {
             }
         } else if(textOption1 === 'N') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/[0-9]/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -235,7 +235,7 @@ const View = () => {
             }
         } else if(textOption1 === 'L') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/[a-z]/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -251,7 +251,7 @@ const View = () => {
             }
         } else if(textOption1 === 'U') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/[A-Z]/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -267,7 +267,7 @@ const View = () => {
             }
         } else if(textOption1 === 'K') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/[ㄱ-힣]/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -283,7 +283,7 @@ const View = () => {
             }
         } else if(textOption1 === 'E') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/\n/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -299,7 +299,7 @@ const View = () => {
             }
         } else if(textOption1 === 'G') {
             const arr1:string[] = textInput.split('');
-            for(let word of arr1) {
+            for(const word of arr1) {
                 if(/\s/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
@@ -537,7 +537,7 @@ const View = () => {
                         {
                             textMode === "I" ? <button onClick={() => textConversion()}>변환</button> : 
                             textMode === "D" ? <button onClick={() => textRemove()}>제거</button> :
-                            textMode === "U" ? <button onClick={() => textRemove()}>수정</button> : <></>
+                            textMode === "U" ? <button onClick={() => textUpdate()}>수정</button> : <></>
                         }
                     </div>
                 </div>
