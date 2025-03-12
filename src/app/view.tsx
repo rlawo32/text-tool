@@ -107,7 +107,9 @@ const ViewStyle = styled('div')`
                 }
 
                 .header_title {
+                    color: #000000;
                     font-size: 1.4rem;
+                    font-weight: bold;
                 }
             }
         }
@@ -124,17 +126,17 @@ const ViewStyle = styled('div')`
             border-radius: 10px;
 
             select {
-                width: 100px;
+                width: 120px;
                 margin: 10px;
             }
 
             input {
-                width: 100px;
+                width: 120px;
                 margin: 10px;
             }
 
             button {
-                width: 100px;
+                width: 120px;
             }
 
             .text_option_section {
@@ -453,6 +455,9 @@ const View = () => {
                             <option value="D">문자 제거</option>
                             <option value="U">문자 수정</option>
                         </select>
+                        {
+                            textMode !== "D" ? <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder={textMode === 'I' ? "word to add" : "word to change"} /> : <input type="text" style={{opacity:0}} />
+                        }
                     </div>
                     <div className="text_option_section">
                         <select value={textOption1} onChange={(e) => setTextOption1(e.target.value)}>
@@ -484,8 +489,8 @@ const View = () => {
                                     <option value="B">문자 뒤</option>
                                     <option value="A">문자 앞뒤</option>
                                 </select>
-                                <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder="word" />
-                            </div> : <div className="text_option_section">1</div>
+                                <input type="text" style={{opacity:0}} />
+                            </div> : <div className="text_option_section"></div>
                     }
                     <div className="text_option_section">
                         {
