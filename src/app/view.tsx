@@ -319,33 +319,10 @@ const View = () => {
     }
 
     const textRemove = () => {
-        const conversionOrigin:string = textInput.replace(/ /g,"");
-        const conversionOrder:string = textOrder;
+        const conversionOrigin:string = textInput;
         let conversionResult:string = "";
 
-        const arr:string[] = conversionOrigin.split('');
-
-        if(textOption1 === 'O') {
-            for(let word of arr) {
-                if(textOption2 === 'F') {
-                    conversionResult += conversionOrder + word;
-                } else if(textOption2 === 'B') {
-                    conversionResult += word + conversionOrder;
-                } else if(textOption2 === 'A') {
-                    conversionResult += conversionOrder + word + conversionOrder;
-                }
-            }
-        } else if(textOption1 === 'I') {
-            for(let i=0; i<arr.length; i+=textInterval) {
-                if(textOption2 === 'F') {
-                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval);
-                } else if(textOption2 === 'B') {
-                    conversionResult += conversionOrigin.substring(i, i+textInterval) + conversionOrder;
-                } else if(textOption2 === 'A') {
-                    conversionResult += conversionOrder + conversionOrigin.substring(i, i+textInterval) + conversionOrder;
-                }
-            }
-        } else if(textOption1 === 'S') {
+        if(textOption1 === 'S') {
             if(textOption2 === 'F') {
                 conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, '');
             } else if(textOption2 === 'B') {
@@ -406,10 +383,74 @@ const View = () => {
         setTextResult(conversionResult);
     }
 
-    const textMove = () => {
+    const textUpdate = () => {
+        const conversionOrigin:string = textInput;
+        const conversionOrder:string = textOrder;
+        let conversionResult:string = "";
+
+        if(textOption1 === 'S') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder);
+            }
+        } else if(textOption1 === 'N') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder);
+            }
+        } else if(textOption1 === 'L') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[a-z]/g, conversionOrder);
+            }
+        } else if(textOption1 === 'U') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[A-Z]/g, conversionOrder);
+            }
+        } else if(textOption1 === 'K') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder);
+            }
+        } else if(textOption1 === 'E') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/\n/g, conversionOrder);
+            }
+        } else if(textOption1 === 'G') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/\s/g, conversionOrder);
+            }
+        }
+
+        setTextResult(conversionResult);
     }
 
     useEffect(() => {
+        setTextOrder('');
         if(textMode === 'I') setTextOption1('O');
         else if(textMode === 'D') setTextOption1('S');
         else if(textMode === 'U') setTextOption1('S');
