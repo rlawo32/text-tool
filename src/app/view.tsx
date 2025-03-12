@@ -48,6 +48,43 @@ const ViewStyle = styled('div')`
             
             .text_result_section {
                 position: relative;
+
+                .text_simple_area {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .tooltip_message {
+                        position: absolute;
+                        top: -24px;
+                        right: 60px;
+                        height: 25px;
+                        font-size: 11px;
+                        font-weight: bold;
+                        background: rgb(28 28 31 / 1);
+                        color: #c97874;
+                        padding: 5px 8px;
+                        border-radius: 10px;
+                        opacity: 0;
+                        pointer-events: none;
+                        z-index: 0;
+
+                        &::before {
+                            position: absolute;
+                            content: "";
+                            height: 8px;
+                            width: 8px;
+                            background: rgb(28 28 31 / 1);
+                            bottom: -3px;
+                            left: 32%;
+                            transform: translate(-50%) rotate(45deg);
+                        }
+                    }
+
+                    .tooltip_message.active {
+                        animation: twink 3s ease-in;
+                    }
+                }
             }
 
             .text_section_header {
@@ -116,9 +153,17 @@ const ViewStyle = styled('div')`
                 }
             }
         }
+    }
 
-        .tooltip {
-            
+    @keyframes twink {
+        1% {
+            opacity: 1;
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
         }
     }
 `
@@ -386,8 +431,13 @@ const View = () => {
                                 Text Result
                             </div>
                             <div className="text_simple_area">
-                                <CopyToClipboard text={textResult} onCopy={() => alert("복사되었습니다.")}>
-                                    <button>결과 복사</button>
+                                <CopyToClipboard text={textResult}>
+                                    <button onClick={() => {setTextTooltip(true); setTimeout(() => {setTextTooltip(false)}, 3000);}}>
+                                        <div className={textTooltip ? "tooltip_message active" : "tooltip_message"}>
+                                            클립보드로 복사되었습니다.
+                                        </div>
+                                        결과 복사
+                                    </button>
                                 </CopyToClipboard>
                                 <button onClick={() => setTextInput(textResult)}>입력창으로 이동</button>
                             </div>
