@@ -536,8 +536,7 @@ const View = () => {
                     <div className="text_option_section">
                         {
                             textMode === "I" ? <button onClick={() => textConversion()}>변환</button> : 
-                            textMode === "D" ? <button onClick={() => textRemove()}>제거</button> :
-                            textMode === "U" ? <button onClick={() => textUpdate()}>수정</button> : <></>
+                            textMode === "D" ? <button onClick={() => textRemove()}>제거</button> : <button onClick={() => textUpdate()}>수정</button> 
                         }
                     </div>
                 </div>
