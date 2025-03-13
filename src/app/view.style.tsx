@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ViewStyle = styled('div')`
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     height: 100vh;
     width: 100%;
@@ -13,6 +13,12 @@ export const ViewStyle = styled('div')`
         display: flex;
         flex-direction: column;
         align-items: center;
+        
+        .text_tool_title {
+            padding: 50px 0;
+            color: rgb(var(--foreground-rgb));
+            font-size: 4rem;
+        }
 
         textarea {
             width: 400px;
