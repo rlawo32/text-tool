@@ -19,8 +19,15 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "TexTool",
-  description: "Combine, delete, and edit text with ease!",
+  title: "텍스트 도구 : Text Editor",
+  description: "원하는 텍스트를 추가, 수정, 삭제 하세요! add text, edit text, delete text as you like!",
+  openGraph: {
+    type: "website",
+    title: "텍스트 도구 : Text Editor",
+    description: "원하는 텍스트를 추가, 수정, 삭제 하세요! add text, edit text, delete text as you like!",
+    url: "https://www.textool.site/",
+    locale: "ko_KR"
+  }
 };
 
 export default function RootLayout({
