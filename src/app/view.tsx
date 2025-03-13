@@ -297,6 +297,9 @@ const View = () => {
     return (
         <Style.ViewStyle>
             <div className="text_tool_container">
+                <div className="text_tool_title">
+                    <h1>𝙏𝙚𝙭𝙩𝙤𝙤𝙡</h1>
+                </div>
                 <div className="text_input_area">
                     <div className="text_input_section">
                         <div className="text_section_header">
