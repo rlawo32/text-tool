@@ -16,7 +16,7 @@ export const ViewStyle = styled('div')`
         
         .text_tool_title {
             padding: 50px 0;
-            color: rgb(var(--foreground-rgb));
+            color: #0a0a0a;
             font-size: 4rem;
         }
 
@@ -27,6 +27,7 @@ export const ViewStyle = styled('div')`
             border: 2px solid #000000;
             border-radius: 10px;
             background-color: #c7c2c2;
+            color: #0a0a0a;
             outline: none;
         }
 
@@ -104,6 +105,7 @@ export const ViewStyle = styled('div')`
 
                 button {
                     margin: 0 5px;
+                    cursor: pointer;
                 }
 
                 .header_title {
@@ -138,6 +140,7 @@ export const ViewStyle = styled('div')`
             button {
                 width: 120px;
                 border: none;
+                cursor: pointer;
             }
 
             .text_option_section {
