@@ -14,7 +14,7 @@ const View = () => {
     const [textInput, setTextInput] = useState<string>("");
     const [textResult, setTextResult] = useState<string>("");
     const [textOption1, setTextOption1] = useState<string>("O");
-    const [textOption2, setTextOption2] = useState<string>("F");
+    const [textOption2, setTextOption2] = useState<string>("");
     const [textOrder, setTextOrder] = useState<string>("");
     const [textInterval, setTextInterval] = useState<number>(0);
     const [textSpecific, setTextSpecific] = useState<string>("");
@@ -26,6 +26,16 @@ const View = () => {
         let conversionResult:string = "";
 
         const arr:string[] = conversionOrigin.split('');
+
+        if(textOption1 === 'S' && textSpecific.length < 1) {
+            alert('특정 문자를 입력해주세요.');
+            return false;
+        }
+
+        if(textOption2 === 'NONE') {
+            alert('추가할 위치를 정해주세요.');
+            return false;
+        }
 
         if(textOption1 === 'O') {
             for(const word of arr) {
@@ -59,6 +69,22 @@ const View = () => {
             const arr1:string[] = textInput.split('');
             for(const word of arr1) {
                 if(/[0-9]/.test(word)) {
+                    if(textOption2 === 'F') {
+                        conversionResult += conversionOrder + word;
+                    } else if(textOption2 === 'B') {
+                        conversionResult += word + conversionOrder;
+                    } else if(textOption2 === 'A') {
+                        conversionResult += conversionOrder + word + conversionOrder;
+                    }
+                    console.log(conversionResult);
+                } else {
+                    conversionResult += word;
+                }
+            }
+        } else if(textOption1 === 'E') {
+            const arr1:string[] = textInput.split('');
+            for(const word of arr1) {
+                if(/[a-zA-Z]/.test(word)) {
                     if(textOption2 === 'F') {
                         conversionResult += conversionOrder + word;
                     } else if(textOption2 === 'B') {
@@ -119,7 +145,7 @@ const View = () => {
                     conversionResult += word;
                 }
             }
-        } else if(textOption1 === 'E') {
+        } else if(textOption1 === 'B') {
             const arr1:string[] = textInput.split('');
             for(const word of arr1) {
                 if(/\n/.test(word)) {
@@ -160,6 +186,11 @@ const View = () => {
         const conversionOrigin:string = textInput;
         let conversionResult:string = "";
 
+        if(textOption1 === 'S' && textSpecific.length < 1) {
+            alert('특정 문자를 입력해주세요.');
+            return false;
+        }
+
         if(textOption1 === 'S') {
             if(textOption2 === 'F') {
                 conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, '');
@@ -175,6 +206,14 @@ const View = () => {
                 conversionResult += conversionOrigin.replaceAll(/[0-9]/g, '');
             } else if(textOption2 === 'A') {
                 conversionResult += conversionOrigin.replaceAll(/[0-9]/g, '');
+            }
+        } else if(textOption1 === 'E') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, '');
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, '');
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, '');
             }
         } else if(textOption1 === 'L') {
             if(textOption2 === 'F') {
@@ -200,7 +239,7 @@ const View = () => {
             } else if(textOption2 === 'A') {
                 conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, '');
             }
-        } else if(textOption1 === 'E') {
+        } else if(textOption1 === 'B') {
             if(textOption2 === 'F') {
                 conversionResult += conversionOrigin.replaceAll(/\n/g, '');
             } else if(textOption2 === 'B') {
@@ -226,6 +265,11 @@ const View = () => {
         const conversionOrder:string = textOrder;
         let conversionResult:string = "";
 
+        if(textOption1 === 'S' && textSpecific.length < 1) {
+            alert('특정 문자를 입력해주세요.');
+            return false;
+        }
+
         if(textOption1 === 'S') {
             if(textOption2 === 'F') {
                 conversionResult += conversionOrigin.replaceAll(`${textSpecific}`, conversionOrder);
@@ -241,6 +285,14 @@ const View = () => {
                 conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder);
             } else if(textOption2 === 'A') {
                 conversionResult += conversionOrigin.replaceAll(/[0-9]/g, conversionOrder);
+            }
+        } else if(textOption1 === 'E') {
+            if(textOption2 === 'F') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, conversionOrder);
+            } else if(textOption2 === 'B') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, conversionOrder);
+            } else if(textOption2 === 'A') {
+                conversionResult += conversionOrigin.replaceAll(/[a-zA-Z]/g, conversionOrder);
             }
         } else if(textOption1 === 'L') {
             if(textOption2 === 'F') {
@@ -266,7 +318,7 @@ const View = () => {
             } else if(textOption2 === 'A') {
                 conversionResult += conversionOrigin.replaceAll(/[ㄱ-힣]/g, conversionOrder);
             }
-        } else if(textOption1 === 'E') {
+        } else if(textOption1 === 'B') {
             if(textOption2 === 'F') {
                 conversionResult += conversionOrigin.replaceAll(/\n/g, conversionOrder);
             } else if(textOption2 === 'B') {
@@ -289,7 +341,8 @@ const View = () => {
 
     useEffect(() => {
         setTextOrder('');
-        if(textMode === 'I') setTextOption1('O');
+        setTextSpecific('');
+        if(textMode === 'I') {setTextOption1('O'); setTextOption2('NONE')}
         else if(textMode === 'D') setTextOption1('S');
         else if(textMode === 'U') setTextOption1('S');
     }, [textMode])
@@ -337,36 +390,38 @@ const View = () => {
                             <option value="D">문자 제거</option>
                             <option value="U">문자 수정</option>
                         </select>
-                        {
-                            textMode !== "D" ? <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} placeholder={textMode === 'I' ? "word to add" : "word to change"} /> : <input type="text" style={{opacity:0}} />
-                        }
+                        <input type="text" value={textOrder} onChange={(e) => setTextOrder(e.target.value)} 
+                        style={textMode !== "D" ? {opacity:1} : {opacity:0}} placeholder={textMode === 'I' ? "word to add" : "word to change"} />
                     </div>
                     <div className="text_option_section">
                         <select value={textOption1} onChange={(e) => setTextOption1(e.target.value)}>
                             {
                                 textMode === 'I' ? 
                                     <>
-                                        <option value="O">1문자</option>
-                                        <option value="I">N문자</option>
+                                        <option value="O">모든 문자</option>
+                                        <option value="I">N 문자</option>
                                     </> : <></>
                             }
                             <option value="S">특정 문자</option>
-                            <option value="N">숫자</option>
-                            <option value="L">영소문자</option>
-                            <option value="U">영대문자</option>
-                            <option value="K">한글</option>
-                            <option value="E">개행</option>
-                            <option value="G">공백</option>
+                            <option value="N">모든 숫자</option>
+                            <option value="E">모든 영문자</option>
+                            <option value="L">모든 영소문자</option>
+                            <option value="U">모든 영대문자</option>
+                            <option value="K">모든 한글</option>
+                            <option value="B">모든 개행</option>
+                            <option value="G">모든 공백</option>
                         </select>
-                        {
-                            textOption1 === "I" ? <input type="number" value={textInterval} onChange={(e) => setTextInterval(e.target.valueAsNumber)} /> :
-                            textOption1 === "S" ? <input type="text" value={textSpecific} onChange={(e) => setTextSpecific(e.target.value)} /> : <input type="text" style={{opacity:0}} />
-                        }
+                        <input type="number" value={textInterval} onChange={(e) => setTextInterval(e.target.valueAsNumber)} 
+                        style={textOption1 === "I" ? {display:"block", opacity:1} : {display:"none", opacity:0}} />
+                        <input type="text" value={textSpecific} onChange={(e) => setTextSpecific(e.target.value)} placeholder={"specific word"}
+                        style={textOption1 === "S" ? {display:"block", opacity:1} : {display:"none", opacity:0}} />
+                        <input type="text" style={textOption1 !== "S" && textOption1 !== "I" ? {display:"block", opacity:0} : {display:"none", opacity:1}} />
                     </div>
                     {
                         textMode === 'I' ?
                             <div className="text_option_section">
                                 <select onChange={(e) => setTextOption2(e.target.value)}>
+                                    <option value="NONE">추가할 위치</option>
                                     <option value="F">문자 앞</option>
                                     <option value="B">문자 뒤</option>
                                     <option value="A">문자 앞뒤</option>
