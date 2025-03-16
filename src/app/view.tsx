@@ -360,7 +360,7 @@ const View = () => {
                                 Enter Text
                             </div>
                         </div>
-                        <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)}></textarea>
+                        <textarea style={{resize : "none"}} value={textInput} onChange={(e) => setTextInput(e.target.value)} />
                     </div>
                     <FontAwesomeIcon icon={arrowIcon} className="icon" />
                     <div className="text_input_section text_result_section">
@@ -380,7 +380,7 @@ const View = () => {
                                 <button onClick={() => setTextInput(textResult)}>입력창으로 이동</button>
                             </div>
                         </div>
-                        <textarea style={{resize : "none"}} value={textResult} readOnly={true}></textarea>
+                        <textarea style={{resize : "none"}} value={textResult} readOnly={true} />
                     </div>
                 </div>
                 <div className="text_option_area">
